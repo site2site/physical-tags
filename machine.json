@@ -1,0 +1,6 @@
+{
+  "name": "physical-tags",
+  "description": "Uses computer vision and other image processing to recognize shapes in an image as tags ",
+  "server": "spacebrew.sitetosite.co",
+  "location": "Studio-X NYC"
+}
