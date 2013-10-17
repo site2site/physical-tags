@@ -8,10 +8,19 @@
 
 var cv = require('opencv'),
   fs = require("fs"),
-  PNG = require("png").Png;
+  PNG = require("png").Png,
+  PNGdecoder = require('png-js');
 
 
 var image_path = "./";
+
+var image = new PNGdecoder(image_path + "test.png");
+
+image.decode(function (pixels) {
+    console.log(pixels);
+});
+
+/*
 
 fs.readFile(image_path + "test.png", function(err, data) {
   var base64data = data.toString('base64');
@@ -35,7 +44,7 @@ fs.readFile(image_path + "test.png", function(err, data) {
 });
 
 
-
+*/
 
 
 

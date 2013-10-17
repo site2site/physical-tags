@@ -13,7 +13,8 @@
         "ws": "*",
         "colors": "*",
         "opencv": "*",
-        "png": "*"
+        "png": "*",
+        "png-js": "*"
     },
     "engines": {
         "node": ">=0.10.0"
