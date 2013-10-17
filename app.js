@@ -55,8 +55,8 @@ function onCustomMessage( name, value, type ){
       if(name == "image"){
         console.log('png buffer recieved');
         var buf = new Buffer(value);
-        
-        var png = new PNG(buf, 640, 480, 'rgb', 8);
+
+        var png = new PNG(buf, 640, 480, 'rgb');
 
         var png_image = png.encodeSync();
 
