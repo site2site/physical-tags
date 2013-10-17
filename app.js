@@ -15,7 +15,9 @@ var cv = require('opencv'),
   PNG = require("png").Png;
 
 
-var filepath = './files/';
+var files_location = "files/";
+var filepath = "./" + files_location;
+var hosted_path = "http://api.sitetosite.co/modules/physical-tags/" + files_location;
 
 
 /**
@@ -65,10 +67,10 @@ function onCustomMessage( name, value, type ){
 
         fs.writeFile(filename, buf, 'binary', function(err){
           console.log(filename + ' written');
+          outputContours( filename );
         });
 
         
-  
       }
   }
 }
@@ -98,6 +100,7 @@ function onBooleanMessage( name, value ){
 }
 
 
+//openCV parameters
 var lowThresh = 0;
 var highThresh = 100;
 var nIters = 2;
@@ -108,49 +111,55 @@ var RED   = [0, 0, 255]; //B, G, R
 var GREEN = [0, 255, 0]; //B, G, R
 var WHITE = [255, 255, 255]; //B, G, R
 
-/*
-cv.readImage('../test/square2.jpg', function(err, im) {
 
-  var out = new cv.Matrix(im.height(), im.width());
+function outputContours( filename ){
+  cv.readImage(filename, function(err, im) {
 
-  // convert the image to grey scale
-  im.convertGrayscale();
+    var out = new cv.Matrix(im.height(), im.width());
 
-  //make a copy of the image called im_canny (not sure why?)
-  im_canny = im.copy();
+    // convert the image to grey scale
+    im.convertGrayscale();
 
-  im_canny.canny(lowThresh, highThresh);
-  im_canny.dilate(nIters);
+    //make a copy of the image called im_canny (not sure why?)
+    im_canny = im.copy();
 
-//uses a for loop to find number of contours
-  contours = im_canny.findContours();
+    im_canny.canny(lowThresh, highThresh);
+    im_canny.dilate(nIters);
 
-  for(i = 0; i < contours.size(); i++) {
+    //uses a for loop to find number of contours
+    contours = im_canny.findContours();
 
-    if(contours.area(i) < minArea) continue;
+    for(i = 0; i < contours.size(); i++) {
 
-    // arcLength tells you how long each face is, so that you can cut out any small shape
-    var arcLength = contours.arcLength(i, true);
-    contours.approxPolyDP(i, 0.01 * arcLength, true);
+      if(contours.area(i) < minArea) continue;
 
-    // chooses a drawing color based on number of contours
-    switch(contours.cornerCount(i)) {
-    case 3:
-      out.drawContour(contours, i, GREEN);
-      break;
-    case 4:
-      out.drawContour(contours, i, RED);
-      break;
-    case 5:
-    out.drawContour(contours,i, BLUE);
-    break;
-    default:
-      out.drawContour(contours, i, WHITE);
+      // arcLength tells you how long each face is, so that you can cut out any small shape
+      var arcLength = contours.arcLength(i, true);
+      contours.approxPolyDP(i, 0.01 * arcLength, true);
 
+      // chooses a drawing color based on number of contours
+      switch(contours.cornerCount(i)) {
+        case 3:
+          out.drawContour(contours, i, GREEN);
+          break;
+        case 4:
+          out.drawContour(contours, i, RED);
+          break;
+        case 5:
+          out.drawContour(contours,i, BLUE);
+          break;
+        default:
+          out.drawContour(contours, i, WHITE);
+      }
     }
-  }
 
-//saves image
-  out.save('../test/out.png');
-});
-*/
+    //saves image
+    var timestamp_filename = new Date().getTime() + ".png"; 
+    out.save(filepath + timestamp_filename);
+    console.log('output saved');
+    sb.send("src", "string", hosted_path + timestamp_filename);
+  });
+}
+
+  
+
