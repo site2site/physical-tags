@@ -11,8 +11,7 @@ var cv = require('opencv'),
   Spacebrew = require('./sb-1.3.0').Spacebrew,
   sb,
   config = require("./machine"),
-  fs = require("fs"),
-  PNG = require("png").Png;
+  fs = require("fs");
 
 
 var files_location = "files/";

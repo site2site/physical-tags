@@ -12,9 +12,7 @@
     "dependencies": {
         "ws": "*",
         "colors": "*",
-        "opencv": "*",
-        "png": "*",
-        "png-js": "*"
+        "opencv": "*"
     },
     "engines": {
         "node": ">=0.10.0"
