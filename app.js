@@ -17,6 +17,8 @@ var cv = require('opencv'),
 
 var files_location = "files/";
 var filepath = "./" + files_location;
+var source_directory = "src/";
+var output_directory = "out/";
 var hosted_path = "http://api.sitetosite.co/modules/physical-tags/" + files_location;
 
 
@@ -72,8 +74,8 @@ function onCustomMessage( name, value, type ){
 
           fs.writeFile(filename, buf, 'binary', function(err){
             console.log(filename + ' written');
-            
-            sb.send("out", "string", hosted_path + timestamp_filename);
+
+            sb.send("out", "string", hosted_path + source_directory + timestamp_filename);
 
             outputContours( filename );
           });
@@ -175,9 +177,9 @@ function outputContours( filename ){
 
     //saves image
     var timestamp_filename = new Date().getTime() + ".png"; 
-    out.save(filepath + timestamp_filename);
+    out.save(filepath + output_directory + filename);
     console.log('output saved');
-    sb.send("out", "string", hosted_path + timestamp_filename);
+    sb.send("out", "string", hosted_path + output_directory + filename);
   });
 }
 
