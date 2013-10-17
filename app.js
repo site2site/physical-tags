@@ -15,6 +15,9 @@ var cv = require('opencv'),
   PNG = require("png").Png;
 
 
+var filepath = './files/';
+
+
 /**
 *
 * Spacebrew setup
@@ -58,7 +61,9 @@ function onCustomMessage( name, value, type ){
         var b64_buf = new Buffer(value, 'base64').toString('binary');
         var buf = new Buffer(b64_buf, 'binary');
 
-        fs.writeFile('image.png', buf, 'binary', function(err, filename){
+        var filename = filepath + 'image.png';
+
+        fs.writeFile(filename, buf, 'binary', function(err){
           console.log(filename + ' written');
         });
 
