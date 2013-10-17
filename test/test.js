@@ -28,7 +28,7 @@ fs.readFile(image_path + "test.png", function(err, data) {
 
   var base64data = data.toString('base64');
   console.log('1. sending base 64 with length' + base64data.length);
-  console.log(base64data);
+  
   
   
 
