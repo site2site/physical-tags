@@ -57,11 +57,10 @@ function onCustomMessage( name, value, type ){
 
         var b64_buf = new Buffer(value, 'base64').toString('binary');
         var buf = new Buffer(b64_buf, 'binary');
-        console.log('2. base64 buffer created');
 
         fs.writeFileSync('image.png', buf, 'binary');
 
-        console.log('5. file written');
+        console.log('image.png file written');
   
       }
   }
