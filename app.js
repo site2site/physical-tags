@@ -75,7 +75,7 @@ function onCustomMessage( name, value, type ){
           fs.writeFile(filename, buf, 'binary', function(err){
             console.log(filename + ' written');
 
-            sb.send("out", "string", hosted_path + source_directory + timestamp_filename);
+            sb.send("src", "string", hosted_path + source_directory + timestamp_filename);
 
             outputContours( timestamp_filename );
           });
