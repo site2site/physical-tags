@@ -54,6 +54,7 @@ function onCustomMessage( name, value, type ){
     case "binary.png":
       if(name == "image"){
         console.log('png buffer recieved');
+        console.dir(value);
         var buf = new Buffer(value, 'binary');
 
         var png = new PNG(buf, 640, 480, 'rgb');
