@@ -14,7 +14,7 @@ var cv = require('opencv'),
 
 var image_path = "./";
 
-var image = new PNGdecoder(image_path + "test.png");
+var image = new PNGdecoder("test.png");
 
 image.decode(function (pixels) {
     console.log(pixels);
