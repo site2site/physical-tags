@@ -1,6 +1,6 @@
 {
-    "name": "timelapse",
-    "description": "Site to Site Raspberry Pi camera module to connect to Spacebrew",
+    "name": "physical-tags",
+    "description": "A Site to Site module that uses computer vision and other image processing to recognize shapes in an image as tags",
     "version": "0.0.1",
     "author": {
         "name": "Leo Warshaw <ljs2167@columbia.edu>",

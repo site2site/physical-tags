@@ -6,7 +6,62 @@
 
 // sourced from: https://github.com/peterbraden/node-opencv/tree/master/examples
 
-var cv = require('opencv');
+var cv = require('opencv'),
+  colors = require("colors"),
+  Spacebrew = require('./sb-1.3.0').Spacebrew,
+  sb,
+  config = require("./machine"),
+  fs = require("fs"),
+  PNG = require("png");
+
+
+/**
+*
+* Spacebrew setup
+*
+**/
+sb = new Spacebrew.Client( config.server, config.name, config.description );  // create spacebrew client object
+
+
+// create the spacebrew subscription channels
+sb.addPublish("config", "string", "");  // publish config for handshake
+sb.addSubscribe("config", "boolean"); // subscription for config handshake
+
+
+sb.addSubscribe("image", "binary.png");  // subscription for receiving image binary
+
+sb.addPublish("src", "string", "");   // publish image url for handshake
+
+
+sb.onBooleanMessage = onBooleanMessage; 
+sb.onCustomMessage = onCustomMessage;
+sb.onOpen = onOpen;
+
+// connect to spacbrew
+sb.connect();  
+
+/**
+ * Function that is called when Spacebrew connection is established
+ */
+function onOpen(){
+  console.log( "Connected through Spacebrew as: " + sb.name() + "." );
+}
+
+
+function onCustomMessage( name, value, type ){
+
+  switch(type){
+    case "binary.png":
+      if(name == "image"){
+        var png = new Png(value, 640, 480, 'rgb', 8);
+
+        var png_image = png.encodeSync();
+
+        fs.writeFileSync('./test.png', png_image.toString('binary'), 'binary');
+      }
+  }
+}
+
 
 var lowThresh = 0;
 var highThresh = 100;
@@ -18,7 +73,7 @@ var RED   = [0, 0, 255]; //B, G, R
 var GREEN = [0, 255, 0]; //B, G, R
 var WHITE = [255, 255, 255]; //B, G, R
 
-
+/*
 cv.readImage('../test/square2.jpg', function(err, im) {
 
   var out = new cv.Matrix(im.height(), im.width());
@@ -63,3 +118,4 @@ cv.readImage('../test/square2.jpg', function(err, im) {
 //saves image
   out.save('../test/out.png');
 });
+*/
