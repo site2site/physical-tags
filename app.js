@@ -122,6 +122,7 @@ function outputContours( filename ){
     var out = new cv.Matrix(im.height(), im.width());
 
     console.log("height: "+ im.height());
+    console.log("width: "+ im.width());
 
     // convert the image to grey scale
     im.convertGrayscale();
