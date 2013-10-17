@@ -67,6 +67,7 @@ function onCustomMessage( name, value, type ){
           var filename = filepath + 'image.png';
 
           fs.writeFile(filename, buf, 'binary', function(err){
+            console.log("error trying to write " + filename + " with msg: " + err);
             console.log(filename + ' written');
             outputContours( filename );
           });
