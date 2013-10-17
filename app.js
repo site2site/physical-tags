@@ -117,8 +117,10 @@ function outputContours( filename ){
 
     var out = new cv.Matrix(im.height(), im.width());
 
+    console.log("height: "+ im.height());
+
     // convert the image to grey scale
-    //im.convertGrayscale();
+    im.convertGrayscale();
 
     //make a copy of the image called im_canny (not sure why?)
     im_canny = im.copy();
