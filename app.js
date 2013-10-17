@@ -12,7 +12,7 @@ var cv = require('opencv'),
   sb,
   config = require("./machine"),
   fs = require("fs"),
-  PNG = require("png");
+  PNG = require("png").Png;
 
 
 /**
