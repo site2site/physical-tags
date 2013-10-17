@@ -68,7 +68,7 @@ function onCustomMessage( name, value, type ){
 
         setTimeout(function(){
           var timestamp_filename = new Date().getTime() + ".png";
-          var filename = filepath + timestamp_filename;
+          var filename = filepath + source_directory + timestamp_filename;
 
           //TODO: add check for if filepath directory exists, if not create it
 
