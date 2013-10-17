@@ -29,13 +29,14 @@ sb = new Spacebrew.Client( config.server, config.name, config.description );  //
 
 
 // create the spacebrew subscription channels
-sb.addPublish("config", "string", "");  // publish config for handshake
-sb.addSubscribe("config", "boolean"); // subscription for config handshake
+//sb.addPublish("config", "string", "");  // publish config for handshake
+//sb.addSubscribe("config", "boolean"); // subscription for config handshake
 
 
 sb.addSubscribe("image", "binary.png");  // subscription for receiving image binary
 
-sb.addPublish("src", "string", "");   // publish image url for handshake
+sb.addPublish("src", "string", "");   // publish source image
+sb.addPublish("out", "string", "");   // publish contoured image
 
 
 sb.onBooleanMessage = onBooleanMessage; 
@@ -64,11 +65,16 @@ function onCustomMessage( name, value, type ){
         var buf = new Buffer(b64_buf, 'binary');
 
         setTimeout(function(){
-          var filename = filepath + 'image.png';
+          var timestamp_filename = new Date().getTime() + ".png";
+          var filename = filepath + timestamp_filename;
+
+          //TODO: add check for if filepath directory exists, if not create it
 
           fs.writeFile(filename, buf, 'binary', function(err){
-            console.log("error trying to write " + filename + " with msg: " + err);
             console.log(filename + ' written');
+            
+            sb.send("out", "string", hosted_path + timestamp_filename);
+
             outputContours( filename );
           });
         }, 2000);
@@ -171,7 +177,7 @@ function outputContours( filename ){
     var timestamp_filename = new Date().getTime() + ".png"; 
     out.save(filepath + timestamp_filename);
     console.log('output saved');
-    sb.send("src", "string", hosted_path + timestamp_filename);
+    sb.send("out", "string", hosted_path + timestamp_filename);
   });
 }
 
