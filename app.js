@@ -58,7 +58,7 @@ function onCustomMessage( name, value, type ){
   switch(type){
     case "binary.png":
       if(name == "image"){
-        console.log('png buffer recieved');
+        console.log('png buffer received');
 
         var b64_buf = new Buffer(value, 'base64').toString('binary');
         var buf = new Buffer(b64_buf, 'binary');
@@ -122,6 +122,8 @@ function outputContours( filename ){
   cv.readImage(filename, function(err, im) {
 
     console.log('err: '+ err);
+    console.log('im: ');
+    console.dir(im);
 
     var out = new cv.Matrix(im.height(), im.width());
 
