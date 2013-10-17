@@ -63,12 +63,16 @@ function onCustomMessage( name, value, type ){
         var b64_buf = new Buffer(value, 'base64').toString('binary');
         var buf = new Buffer(b64_buf, 'binary');
 
-        var filename = filepath + 'image.png';
+        setTimeout(function(){
+          var filename = filepath + 'image.png';
 
-        fs.writeFile(filename, buf, 'binary', function(err){
-          console.log(filename + ' written');
-          outputContours( filename );
-        });
+          fs.writeFile(filename, buf, 'binary', function(err){
+            console.log(filename + ' written');
+            outputContours( filename );
+          });
+        }, 2000);
+
+          
 
         
       }
