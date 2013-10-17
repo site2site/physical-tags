@@ -176,7 +176,6 @@ function outputContours( filename ){
     }
 
     //saves image
-    var timestamp_filename = new Date().getTime() + ".png"; 
     out.save(filepath + output_directory + filename);
     console.log('output saved');
     sb.send("out", "string", hosted_path + output_directory + filename);
