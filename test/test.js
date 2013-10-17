@@ -7,10 +7,6 @@
 // sourced from: https://github.com/peterbraden/node-opencv/tree/master/examples
 
 var cv = require('opencv'),
-  colors = require("colors"),
-  Spacebrew = require('./sb-1.3.0').Spacebrew,
-  sb,
-  config = require("./machine"),
   fs = require("fs"),
   PNG = require("png").Png;
 
