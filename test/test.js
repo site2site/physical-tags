@@ -40,14 +40,16 @@ fs.readFile(image_path + "test.png", function(err, data) {
 
 
 
-  var png = new PNG(buf, 640, 480, 'rgb');
-  console.log('3. png created');
+  //var png = new PNG(buf, 640, 480, 'rgb');
+  //console.log('3. png created');
 
-  var png_image = png.encodeSync();
-  console.log('4. png_image created from encode');
+  //var png_image = png.encodeSync();
+  //console.log('4. png_image created from encode');
 
-  fs.writeFileSync('./copy.png', png_image.toString('binary'), 'binary');
+  //fs.writeFileSync('./copy.png', png_image.toString('binary'), 'binary');
   
+  fs.writeFileSync('./copy.png', buf, 'binary');
+
   console.log('5. file written');
   
 });
