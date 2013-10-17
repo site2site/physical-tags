@@ -62,6 +62,30 @@ function onCustomMessage( name, value, type ){
   }
 }
 
+/**
+ * onStringMessage Function that is called whenever new spacebrew string messages are received.
+ *          It accepts two parameters:
+ * @param  {String} name    Holds name of the subscription feed channel
+ * @param  {String} value   Holds value received from the subscription feed
+ */
+function onBooleanMessage( name, value ){
+
+  console.log("[onBooleanMessage] value: " + value + " name: " + name);
+
+  switch(name){
+    case "config":
+      console.log([
+          // Timestamp
+          String(+new Date()).grey,
+          // Message
+          String("sending config").cyan
+        ].join(" "));
+
+      sb.send("config", "string", JSON.stringify( config ) );
+      break;
+  }
+}
+
 
 var lowThresh = 0;
 var highThresh = 100;
