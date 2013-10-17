@@ -130,9 +130,11 @@ function outputContours( filename ){
 
   cv.readImage(filename, function(err, im) {
 
-    console.log('err: '+ err);
-    console.log('im: ');
-    console.dir(im);
+    if(err){
+      console.log('Error trying to run cv.readImage with msg: '+ err);
+      return false;
+    }
+    
 
     var out = new cv.Matrix(im.height(), im.width());
 
