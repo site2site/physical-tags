@@ -19,7 +19,7 @@ fs.readFile(image_path + "test.png", function(err, data) {
 
   
 
-  var buf = new Buffer(value, 'base64');
+  var buf = new Buffer(base64data, 'base64');
   console.log('2. base64 buffer created');
 
 
