@@ -13,16 +13,19 @@ var cv = require('opencv'),
 
 
 var image_path = "./";
-
+/*
 var image = new PNGdecoder("test.png");
 
 image.decode(function (pixels) {
     console.log(pixels);
 });
 
-/*
+*/
 
 fs.readFile(image_path + "test.png", function(err, data) {
+  console.log(data);
+  /*
+
   var base64data = data.toString('base64');
   console.log('1. sending base 64 with length' + base64data.length);
 
@@ -41,10 +44,11 @@ fs.readFile(image_path + "test.png", function(err, data) {
   fs.writeFileSync('./copy.png', png_image.toString('binary'), 'binary');
   
   console.log('5. file written');
+  */
 });
 
 
-*/
+
 
 
 
