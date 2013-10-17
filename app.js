@@ -113,6 +113,7 @@ var WHITE = [255, 255, 255]; //B, G, R
 
 
 function outputContours( filename ){
+  console.log("filename: " + filename);
   cv.readImage(filename, function(err, im) {
 
     var out = new cv.Matrix(im.height(), im.width());
