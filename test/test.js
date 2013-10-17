@@ -36,7 +36,7 @@ fs.readFile(image_path + "test.png", function(err, data) {
   var buf = new Buffer(b64_buf, 'binary');
   console.log('2. base64 buffer created');
   console.log(buf);
-/*
+
 
 
 
@@ -49,7 +49,7 @@ fs.readFile(image_path + "test.png", function(err, data) {
   fs.writeFileSync('./copy.png', png_image.toString('binary'), 'binary');
   
   console.log('5. file written');
-  */
+  
 });
 
 
