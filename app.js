@@ -138,9 +138,6 @@ function outputContours( filename ){
 
     var out = new cv.Matrix(im.height(), im.width());
 
-    console.log("height: "+ im.height());
-    console.log("width: "+ im.width());
-
     // convert the image to grey scale
     im.convertGrayscale();
 
@@ -179,7 +176,9 @@ function outputContours( filename ){
 
     //saves image
     out.save(filepath + output_directory + filename);
-    console.log('output saved');
+
+    //publish location
+    console.log('output saved, sending output src: ' + hosted_path + output_directory + filename);
     sb.send("out", "string", hosted_path + output_directory + filename);
   });
 }
