@@ -29,11 +29,14 @@ fs.readFile(image_path + "test.png", function(err, data) {
   var base64data = data.toString('base64');
   console.log('1. sending base 64 with length' + base64data.length);
   console.log(base64data);
-  /*
+  
   
 
-  var buf = new Buffer(base64data, 'base64');
+  var buf = new Buffer(base64data, 'base64').toString('binary');
   console.log('2. base64 buffer created');
+  console.log(buf);
+/*
+
 
 
   var png = new PNG(buf, 640, 480, 'rgb');
