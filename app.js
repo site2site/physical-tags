@@ -55,15 +55,13 @@ function onCustomMessage( name, value, type ){
       if(name == "image"){
         console.log('png buffer recieved');
 
-        var buf = new Buffer(value, 'binary');
-        console.dir(buf.toString('binary'));
+        var b64_buf = new Buffer(value, 'base64').toString('binary');
+        var buf = new Buffer(b64_buf, 'binary');
 
-        var png = new PNG(buf, 640, 480, 'rgb');
+        fs.writeFileSync('image.png', buf, 'binary');
 
-        var png_image = png.encodeSync();
-
-        fs.writeFileSync('./test.png', png_image.toString('binary'), 'binary');
-        console.log('file written');
+        console.log('image.png file written');
+  
       }
   }
 }
