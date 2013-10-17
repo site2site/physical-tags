@@ -7,7 +7,7 @@
         "email": "ljs2167@columbia.edu"
     },
     "contributors": [
-         { "name": "Troy Conrad Therrien", "email": "<troyth@gmail.com>" },
+         { "name": "Troy Conrad Therrien", "email": "<troyth@gmail.com>" }
     ],
     "dependencies": {
         "ws": "*",
