@@ -77,7 +77,7 @@ function onCustomMessage( name, value, type ){
 
             sb.send("out", "string", hosted_path + source_directory + timestamp_filename);
 
-            outputContours( filename );
+            outputContours( timestamp_filename );
           });
         }, 2000);
 
@@ -128,7 +128,7 @@ var WHITE = [255, 255, 255]; //B, G, R
 function outputContours( filename ){
   console.log("filename: " + filename);
 
-  cv.readImage(filename, function(err, im) {
+  cv.readImage(filepath + source_directory + filename, function(err, im) {
 
     if(err){
       console.log('Error trying to run cv.readImage with msg: '+ err);
