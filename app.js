@@ -113,7 +113,7 @@ function onBooleanMessage( name, value ){
 
 
 //openCV parameters
-var lowThresh = 0;
+var lowThresh = 50;
 var highThresh = 100;
 var nIters = 2;
 var minArea = 2000;
